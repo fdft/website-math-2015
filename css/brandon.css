@@ -7,10 +7,11 @@
 body {
     overflow-x: hidden;
     font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #222;
 }
 
 .text-muted {
-    color: #777;
+    color: #fff;
 }
 
 .text-primary {
@@ -234,7 +235,7 @@ fieldset[disabled] .btn-xl.active {
     .navbar-default {
         padding: 25px 0;
         border: 0;
-        background-color: transparent;
+        background-color: #222;
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;
@@ -277,14 +278,16 @@ header {
 header .intro-text {
     padding-top: 100px;
     padding-bottom: 50px;
+    color: #fed136;
 }
 
 header .intro-text .intro-lead-in {
     margin-bottom: 25px;
     font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 22px;
-    font-style: italic;
-    line-height: 22px;
+    font-size: 45px;
+   font-style: italic;
+    font-weight:700;
+    line-height: 45px;
 }
 
 header .intro-text .intro-heading {
@@ -305,9 +308,10 @@ header .intro-text .intro-heading {
     header .intro-text .intro-lead-in {
         margin-bottom: 25px;
         font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
-        font-size: 40px;
+        font-size: 70px;
         font-style: italic;
-        line-height: 40px;
+        font-weight:700;
+        line-height: 70px;
     }
 
     header .intro-text .intro-heading {
@@ -328,6 +332,7 @@ section h2.section-heading {
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 40px;
+    color: #fed136;
 }
 
 section h3.section-subheading {
@@ -337,6 +342,7 @@ section h3.section-subheading {
     font-size: 16px;
     font-style: italic;
     font-weight: 400;
+    color: #fed136;
 }
 
 @media(min-width:768px) {
@@ -348,6 +354,7 @@ section h3.section-subheading {
 .service-heading {
     margin: 15px 0;
     text-transform: none;
+    color:#fff;
 }
 
 #portfolio .portfolio-item {
@@ -528,7 +535,7 @@ section h3.section-subheading {
 
 .timeline .timeline-heading h4 {
     margin-top: 0;
-    color: inherit;
+    color: #fff;
 }
 
 .timeline .timeline-heading h4.subheading {
@@ -659,7 +666,7 @@ section#contact {
 }
 
 section#contact .section-heading {
-    color: #fff;
+    color: #fed136;
 }
 
 section#contact .form-group {
