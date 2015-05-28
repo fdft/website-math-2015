@@ -10,8 +10,16 @@ body {
     background-color: #222;
 }
 
+.my-fg {
+	color: #ccc;
+}
+
+.my-bg {
+	background-color: #222;
+}
+
 .text-muted {
-    color: #fff;
+    color: #ccc;
 }
 
 .text-primary {
@@ -19,7 +27,7 @@ body {
 }
 
 p {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.75;
 }
 
@@ -261,6 +269,8 @@ fieldset[disabled] .btn-xl.active {
         font-size: 1.5em;
     }
 }
+
+
 
 header {
     text-align: center;
@@ -547,6 +557,11 @@ section h3.section-subheading {
     margin-bottom: 0;
 }
 
+/* normal size */
+.timeline .my-icon-responsive {
+	/* font-size:100%; */
+}
+
 @media(min-width:768px) {
     .timeline:before {
         left: 50%;
@@ -582,6 +597,10 @@ section h3.section-subheading {
         padding: 0 30px 20px 20px;
         text-align: left;
     }
+    
+	.timeline .my-icon-responsive {
+		font-size:400%;
+	}    
 }
 
 @media(min-width:992px) {
