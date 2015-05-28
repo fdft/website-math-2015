@@ -1,5 +1,5 @@
 from flask import Flask
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='')
 app.config['DEBUG'] = True
 
 # Note: We don't need to call run() since our application is embedded within
@@ -9,7 +9,7 @@ app.config['DEBUG'] = True
 @app.route('/')
 def hello():
     """Return a friendly HTTP greeting."""
-    return 'Hello World!'
+    return app.send_static_file('index.html')
 
 
 @app.errorhandler(404)

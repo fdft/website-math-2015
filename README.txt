@@ -1,4 +1,19 @@
-Copyright 2015 Brandon Dutra. All code and design is released under the Apache 2.0 license.
+This the the google app engine + flask website for tutoring.
 
-Base template is from Start Bootstrap, Copyright 2013-2015 Iron Summit Media Strategies, LLC. Code released under the Apache 2.0 license.
 
+Notes to self:
+local dev
+dev_appserver.py .
+
+add other google services?
+cd folder
+pip install -r requirements.txt -t lib
+
+update the project
+appcfg.py -A <your-project-id> --oauth2 update .
+
+
+installing 3rd party apps
+https://developers.google.com/appengine/docs/python/tools/libraries27
+
+See the GoogleReadme folder their readmes.
