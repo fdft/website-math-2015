@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 import json
 from google.appengine.api import mail
-import BeautifulSoup
 
+from django.utils.html import strip_tags
+from django.utils.html import escape
+from lxml.html.clean import Cleaner
 
 app = Flask(__name__,static_url_path='')
 app.config['DEBUG'] = True
@@ -26,15 +28,30 @@ def emailMe():
 	phone = request.form.get('phone');
 	email = request.form.get('email');
 	message=request.form.get('message');
-	#print name, phone, email, message;
+	cap = request.form.get('g-recaptcha-response');
+	
+	print name, phone, email, message;
+	print cap
+	
+	cleaner = Cleaner()
+	
+	cleaner.javascript = True # This is True because we want to activate the javascript filter
+	cleaner.style = True      # This is True because we want to activate the styles & stylesheet filter
+	cleaner.scripts = True
+	cleaner.links = True
+	cleaner.allow_tags = None
 	
 	
+	name = cleaner.clean_html(name)
+	phone = cleaner.clean_html(phone)
+	email = cleaner.clean_html(email)
+	message = cleaner.clean_html(message)
 	
 	newMess = mail.EmailMessage();
-	newMess.sender ="pizzaoptimization <pizzaoptimization@google.com>"
-	newMess.subject = "Website Contact for tutoring:  "+ name
-	newMess.to = "pizzaoptimization <pizzaoptimization@google.com>"
-	newMess.body = "Name: " + name + "\nemail: " + email + "\nphone: " + phone + "\nmessage: " + message
+	newMess.sender ="pizzaoptimization <pizzaoptimization@gmail.com>"
+	newMess.subject = escape(strip_tags("Website Contact for tutoring:  "+ name))
+	newMess.to = "pizzaoptimization <pizzaoptimization@gmail.com>"
+	newMess.body = escape(strip_tags("Name: " + name + "\nemail: " + email + "\nphone: " + phone + "\nmessage: " + message))
 
 	newMess.send()	
 	
