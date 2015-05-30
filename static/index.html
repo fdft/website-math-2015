@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!--
 Copyright 2015 Brandon Dutra
 
@@ -15,17 +16,20 @@ Copyright 2015 Brandon Dutra
 
 
 -->
-<!DOCTYPE html>
+
 
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="width=device-width, initial-scale=1" name="viewport">
-	<meta content="" name="description">
-	<meta content="" name="author">
+	<meta name="description" content="You don't have to feel lost or confused in math, I can help tutor you.">
+    <meta name="keywords" content="brandon, dutra Davis, tutors, tutor, tutoring, find a tutor, math, mathematics, test, test prep, sat, act, programming, computer science, class">
+    <meta name="author" content="Brandon Dutra">
+    <meta name="robots" content="index,follow">
+    
 
-	<title>Brandon: Tutor</title><!-- Bootstrap Core CSS -->
+	<title>Brandon's Tutoring in Math and Computer Science</title><!-- Bootstrap Core CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet"><!-- Custom CSS -->
 	<!--  <link href="css/agency.css" rel="stylesheet"> -->
 	<link href="css/brandon.css" rel="stylesheet"><!-- Custom Fonts -->
@@ -47,8 +51,11 @@ Copyright 2015 Brandon Dutra
 	<script type="text/javascript">
   var onloadCallbackRecaptchaForm = function() {
 	   //first make the recaptcha
-		grecaptcha.render('html_element', {
-		  'sitekey' : '6Lc7kQcTAAAAANZFHnEsykjL3sclH-5qkcD8f9I9'
+		grecaptcha.render('my_recaptcha_element', {
+		  'sitekey' : '6Lc7kQcTAAAAANZFHnEsykjL3sclH-5qkcD8f9I9',
+		  'theme': 'dark',
+		  'type': 'image',
+		  'tabindex': 5
 		});
 		
 		
@@ -64,18 +71,43 @@ Copyright 2015 Brandon Dutra
 			//alert('before running?' + name + email + phone + cap + message + $('form').serialize());
 			event.preventDefault();// using this page stop being refreshing 
 			
+			
+			var updateFormMessage = function(msgType, ajaxData) {
+				//msgType = 'warning' | 'success' | 'danger'
+				//ajaxData is jason object sent back from server
+				
+				//alert(msgType + " data " + JSON.stringify(ajaxData));
+				
+				if ( msgType === 'warning'){
+					$('#success').html("<div class='alert alert-warning'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;<\/button><strong>Please check that you filled out the reCAPTCHA and click submit again.<\/strong><\/div");
+				}
+				if ( msgType === 'danger') {
+					$('#success').html("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;<\/button><strong>Sorry, it seems that my mail server is not responding. Please sent me a regular email.<\/strong><\/div");				
+				}
+				
+				if ( msgType === 'success' ) {
+					if ( ajaxData && ajaxData['success'] === true) {
+						$('#success').html("<div class='alert alert-success'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;<\/button><strong>Your message has been sent.<\/strong><\/div");
+					} else if ( ajaxData && ajaxData['success'] === false) {
+						$('#success').html("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;<\/button><strong>Sorry, it seems the reCAPTCHA is not working. Please reload the page or send me a regular email. <\/strong><\/div");				
+					} else {
+						$('#success').html("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;<\/button><strong>Sorry, it seems that my mail server is down. Please send me a regular email.<\/strong><\/div");
+					}
+				}//	msgType === 'success'		
+				
+			};//updateFormMessage
+			
 			if ( ! cap )
 			{
-				$('#success').html("<div class='alert alert-warning'>");
-				$('#success > .alert-warning').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("<\/button>");
-				$('#success > .alert-warning').append("<strong>Please check that you filled out the reCAPTCHA and click submit again.<\/strong>");
-				$('#success > .alert-warning').append('<\/div>');
+				updateFormMessage('warning', '');
 				return;	
 			}
 
 		  $.ajax({
 			type: 'POST',
 			url: '/contactme',
+			dataType: 'json',
+			//jsonp : 'jsonp',  // <---------------------NEW BIT HERE			
 			data:  {
 					'name': name,
 					'phone': phone,
@@ -83,24 +115,11 @@ Copyright 2015 Brandon Dutra
 					'message': message,
 					'g-recaptcha-response': cap
 				},
-			success: function () {
-					// Success message
-					$('#success').html("<div class='alert alert-success'>");
-					$('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("<\/button>");
-					$('#success > .alert-success').append("<strong>Your message has been sent. <\/strong>");
-					$('#success > .alert-success').append('<\/div>');
-
-					//clear all fields
-					//$('#contactForm').trigger("reset");
+			success: function (data) {
+					updateFormMessage('success', data);
 			},
 			error: function() {
-				// Fail message
-					$('#success').html("<div class='alert alert-danger'>");
-					$('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;").append("<\/button>");
-					$('#success > .alert-danger').append("<strong>Sorry " + name + ", it seems that my mail server is not responding. Please sent me a regular email.<\/strong>");
-					$('#success > .alert-danger').append('<\/div>');
-					//clear all fields
-					//$('#contactForm').trigger("reset");            
+				updateFormMessage('danger', '');
 			},
 		  });
 
@@ -108,6 +127,7 @@ Copyright 2015 Brandon Dutra
 	  });
 		
 	  };
+	 
 	</script>
 	
 </head>
@@ -186,7 +206,7 @@ Copyright 2015 Brandon Dutra
 					<h2 class="section-heading">Tutoring Services</h2>
 
 
-					<h3 class="section-subheading text-muted">avaliable</h3>
+					<h3 class="section-subheading text-muted">available</h3>
 				</div>
 			</div>
 
@@ -224,7 +244,7 @@ Copyright 2015 Brandon Dutra
 					<hr>
 
 
-					<p class="text-muted">Have a big test comming up? Let us start preparing for it now.</p>
+					<p class="text-muted">Have a big test coming up? Let us start preparing for it now.</p>
 				</div>
 			</div>
 		</div>
@@ -260,7 +280,7 @@ Copyright 2015 Brandon Dutra
 
 
 								<div class="timeline-body">
-									<p class="text-muted">Math is hard. There is no question about it. But I want to work with you so that you not only understand how to do some specific problem, but I want to help you understand the logic behind a math problem so that you can enjoy doing mathematics. Mathematics is full of beautiful and useful ideas, and I want to help reduce any frustrations you have</p>
+									<p class="text-muted">Math is hard. There is no question about it. But I want to work with you so that you not only understand how to do some specific problem, but I want to help you understand the logic behind a math problem so that you can enjoy doing mathematics. Mathematics is full of beautiful and useful ideas, and I want to help reduce any frustrations you have.</p>
 								</div>
 							</div>
 						</li>
@@ -535,28 +555,28 @@ Copyright 2015 Brandon Dutra
 			<div class="row">
 				<div class="col-lg-12">
 
-					<form action="" id="contactForm" name="sentMessage" novalidate="">
+					<form id="contactForm" name="sentMessage">
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="form-control" id="name" placeholder="Your Name *" required="" type="text">
+									<input class="form-control" id="name" placeholder="Your Name *" required="" type="text" tabindex="1">
 								</div>
 
 
 								<div class="form-group">
-									<input class="form-control" id="email" placeholder="Your Email *" type="email">
+									<input class="form-control" id="email" placeholder="Your Email *" type="email" tabindex="2">
 								</div>
 
 
 								<div class="form-group">
-									<input class="form-control" id="phone" placeholder="Your Phone *" type="tel">
+									<input class="form-control" id="phone" placeholder="Your Phone *" type="tel" tabindex="3">
 								</div>
 							</div>
 
 
 							<div class="col-md-6">
 								<div class="form-group">
-									<textarea class="form-control" id="message" placeholder="Your Message *"></textarea>
+									<textarea class="form-control" id="message" placeholder="Your Message *" tabindex="4"></textarea>
 								</div>
 							</div>
 						</div>
@@ -569,7 +589,7 @@ Copyright 2015 Brandon Dutra
 
 
 							<div class="col-lg-12 text-center">
-								<div id="html_element">
+								<div id="my_recaptcha_element" class="center-block" style="width:304px; margin: 0 auto;">
 								</div>
 							</div>
 						</div>
@@ -656,9 +676,10 @@ Copyright 2015 Brandon Dutra
 			</div>
 		</div>
 	</footer>
+	
+	
+	
 	<!-- license Modal -->
-
-
 	<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1">
 		<div class="modal-content">
 			<div class="close-modal" data-dismiss="modal">
@@ -743,7 +764,7 @@ Copyright 2015 Brandon Dutra
 	 <!-- Contact Form JavaScript 
 	 <script src="js/jqBootstrapValidation.js"></script> 
 	 <script src="js/contact_me.js"></script> -->
-	 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallbackRecaptchaForm&render=explicit" async defer></script>
+	 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallbackRecaptchaForm&amp;render=explicit" async defer></script>
 	 
 	 <!-- Custom Theme JavaScript -->
 	 <script src="js/agency.js"></script>
