@@ -50,9 +50,9 @@ def emailMe():
 		req = urllib2.Request(url, form_data)
 		response = urllib2.urlopen(req)
 		the_page = json.loads(response.read())
-		print("cap response is " + str(the_page));
-		print(the_page['success']);
-		print("what");
+		#print("cap response is " + str(the_page));
+		#print(the_page['success']);
+		#print("what");
 		if ( the_page['success'] != True):
 			return jsonify(success=False);#return empty object		
 	except urllib2.URLError, e:

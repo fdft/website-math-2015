@@ -23,8 +23,8 @@ Copyright 2015 Brandon Dutra
 	<meta charset="utf-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="width=device-width, initial-scale=1" name="viewport">
-	<meta name="description" content="You don't have to feel lost or confused in math, I can help tutor you.">
-    <meta name="keywords" content="brandon, dutra Davis, tutors, tutor, tutoring, find a tutor, math, mathematics, test, test prep, sat, act, programming, computer science, class">
+	<meta name="description" content="Math & CS Tutoring. You don't have to feel lost or confused, I can help tutor you.">
+    <meta name="keywords" content="brandon, dutra, UC Davis, Davis, tutors, tutor, tutoring, find a tutor, math, mathematics, test, test prep, sat, act, programming, computer science, ECS, class">
     <meta name="author" content="Brandon Dutra">
     <meta name="robots" content="index,follow">
     
@@ -58,7 +58,7 @@ Copyright 2015 Brandon Dutra
 		  'tabindex': 5
 		});
 		
-		
+		//not bind the forum email send button to ajax
 		$(function () {
 		$('form').bind('submit', function (event) {
 		
@@ -107,7 +107,7 @@ Copyright 2015 Brandon Dutra
 			type: 'POST',
 			url: '/contactme',
 			dataType: 'json',
-			//jsonp : 'jsonp',  // <---------------------NEW BIT HERE			
+			//jsonp : 'jsonp',  // not needed. 			
 			data:  {
 					'name': name,
 					'phone': phone,
@@ -564,19 +564,19 @@ Copyright 2015 Brandon Dutra
 
 
 								<div class="form-group">
-									<input class="form-control" id="email" placeholder="Your Email *" type="email" tabindex="2">
+									<input class="form-control" id="email" placeholder="Your Email *" required="" type="email" tabindex="2">
 								</div>
 
 
 								<div class="form-group">
-									<input class="form-control" id="phone" placeholder="Your Phone *" type="tel" tabindex="3">
+									<input class="form-control" id="phone" placeholder="Your Phone *" required="" type="tel" tabindex="3">
 								</div>
 							</div>
 
 
 							<div class="col-md-6">
 								<div class="form-group">
-									<textarea class="form-control" id="message" placeholder="Your Message *" tabindex="4"></textarea>
+									<textarea class="form-control" id="message" placeholder="Your Message *" required="" tabindex="4"></textarea>
 								</div>
 							</div>
 						</div>
